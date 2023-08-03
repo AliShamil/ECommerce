@@ -1,0 +1,29 @@
+﻿@model AddProductViewModel
+
+@{
+    Layout = "_LayoutAdmin";
+}
+
+<div class="col-12">
+    <div class="bg-secondary rounded h-100 p-4">
+        <form asp-action="AddProduct" asp-controller="Home" method="post" enctype="multipart/form-data">
+            <label for="name" class="form-label">Name</label>
+            <input asp-for="Name" class="form-control" id="name" /> 
+            <span asp-validation-for="Name" class="text-danger"></span>
+            <label for="description" class="form-label">Description</label>
+            <textarea asp-for="Description" class="form-control" id="description"></textarea> 
+            <span asp-validation-for="Description" class="text-danger"></span>
+            <label for="image" class="form-label">Image</label>
+            <input type="file" asp-for="ImageUrl" class="form-control mb-2 bg-dark" itemid="image" />
+            <span asp-validation-for="ImageUrl" class="text-danger"></span>
+            <label for="categoryId" class="form-label">Category</label>
+            <select asp-for="CategoryId" class="form-select mb-2" asp-items="@ViewBag.Categories" id="categoryId"></select>
+            <span asp-validation-for="CategoryId" class="text-danger"></span>
+            <label for="tagIds" class="form-label">Tags</label>
+            <select multiple style="width:350px" class="form-select mb-2" asp-for="TagIds" asp-items="@ViewBag.Tags" id="tagIds"></select>
+            <span asp-validation-for="TagIds" class="text-danger"></span>
+            <button type="submit" class="btn btn-primary">Accept</button>
+        </form>
+    </div>
+</div>
+

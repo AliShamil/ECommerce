@@ -1,0 +1,35 @@
+﻿@model List<Category>
+
+@{
+    Layout = "_LayoutAdmin";
+}
+
+<div class="col-12">
+    <div class="bg-secondary rounded h-100 p-4">
+        <h6 class="mb-4">Hoverable Table</h6>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var c in Model)
+                {
+                    <tr>
+                        <th scope="row">@c.Id</th>
+                        <td>@c.Name</td>
+                        <td>
+                            <span>
+                                <a class="btn btn-link" href="@Url.Action("EditTag","Home",new {c.Id})">Edit</a>
+                                <a class="btn btn-link" href="@Url.Action("DeleteTag","Home",new {c.Id})">Delete</a>
+                            </span>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

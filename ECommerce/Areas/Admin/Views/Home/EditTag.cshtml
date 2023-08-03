@@ -1,0 +1,19 @@
+﻿@model AddTagViewModel
+
+@{
+    Layout = "_LayoutAdmin";
+}
+
+<div class="col-12">
+    <div class="bg-secondary rounded h-100 p-4">
+        <h6 class="mb-4">Add Category</h6>
+        <form asp-controller="Home" asp-action="UpdateTag" asp-route-model="@Model" asp-route-id="@ViewBag.Id" method="post">
+            <div class="mb-3">
+                <label for="name" class="form-label">Tag Name</label>
+                <input type="text" asp-for="@Model.Name" class="form-control" id="name" />
+                <span asp-validation-for="@Model.Name"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Accept</button>
+        </form>
+    </div>
+</div>

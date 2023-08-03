@@ -8,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<AppDbContext>(op => op.UseSqlServer(builder.Configuration.GetConnectionString("default")));
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -25,8 +26,22 @@ app.UseRouting();
 
 app.UseAuthorization();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+app.UseEndpoints(endpoints =>
+{
+
+    endpoints.MapAreaControllerRoute(
+         name: "adminarea",
+        areaName: "Admin",
+        pattern: "admin/{controller=Home}/{action=Index}");
+
+    endpoints.MapAreaControllerRoute(
+         name: "userarea",
+        areaName: "User",
+        pattern: "user/{controller=Home}/{action=Index}");
+
+    endpoints.MapControllerRoute(
+        name: "default",
+        pattern: "{controller=Home}/{action=Index}/{id?}");
+});
 
 app.Run();

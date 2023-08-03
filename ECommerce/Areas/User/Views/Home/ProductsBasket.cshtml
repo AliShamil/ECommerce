@@ -1,0 +1,42 @@
+﻿@{
+    try
+    {
+        var list = JsonSerializer.Deserialize<List<UserProductViewModel>>(TempData["ProductsBasket"]?.ToString()!);
+        <div class="d-flex justify-content-between">
+            @foreach (var product in list)
+            {
+                <div class="card bg-secondary col-sm-6 col-md-4">
+                    <img class="card-img-top" src="~/@product.ImageUrl" alt="Card image cap">
+                    <div class="card-body bg-secondary">
+                        <h5 class="card-title bg-secondary">Name: @product.Name</h5>
+                        <p class="card-text text-white bg-secondary">@product.Description</p>
+                    </div>
+                    <ul class="list-group list-group-flush bg-secondary">
+                        <li class="list-group-item text-white bg-secondary">Category: @product.CategoryName</li>
+                        <li class="list-group-item bg-secondary">
+                            <div class="dropdown bg-secondary">
+                                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Tags
+                                </a>
+                                <ul class="dropdown-menu bg-secondary">
+                                    @foreach (var tag in product.TagNames)
+                                    {
+                                        <li><span class="dropdown-item text-white bg-secondary">@tag</span></li>
+                                    }
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="card-body bg-secondary">
+                        <a class="card-link" href="@Url.Action("RemoveFromChart","Home",new {product.Id})">Delete From Chart</a>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    catch (Exception)
+    {
+        <h1 class="text-center text-primary">No products added</h1>
+    }
+}
+
