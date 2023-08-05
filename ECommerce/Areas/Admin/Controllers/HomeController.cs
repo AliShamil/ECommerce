@@ -190,9 +190,9 @@ namespace ECommerce.Areas.Admin.Controllers
                 return View("Error", new ErrorViewModel());
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return View("Error", new ErrorViewModel());
+                return View(ex.Message, new ErrorViewModel());
             }
         }
 

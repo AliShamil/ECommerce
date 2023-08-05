@@ -5,7 +5,7 @@
 }
 
 <div class="col-12">
-    <div class="bg-secondary rounded h-100 p-4">
+    <div class="bg-card rounded h-100 p-4">
         <form asp-action="UpdateProduct" asp-controller="Home" asp-route-model="@Model" asp-route-id="@ViewBag.Id" method="post" enctype="multipart/form-data">
             <label for="name" class="form-label">Name</label>
             <input asp-for="@Model.Name" class="form-control" id="name" />

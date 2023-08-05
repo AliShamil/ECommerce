@@ -14,5 +14,8 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    background-image: url("/static/img/mainbg.jpg") !important;
+    background-position: center;
+    background-size: cover;
 }
