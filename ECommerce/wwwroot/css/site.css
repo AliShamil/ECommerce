@@ -1,7 +1,9 @@
 html {
   font-size: 14px;
 }
-
+html, body {
+    height: 100%;
+}
 @media (min-width: 768px) {
   html {
     font-size: 16px;
@@ -14,8 +16,18 @@ html {
 }
 
 body {
-    margin-bottom: 60px;
+    margin: 0;
     background-image: url("/static/img/mainbg.jpg") !important;
     background-position: center;
     background-size: cover;
+}
+
+p {
+    font-size: 2em;
+    text-align: center;
+    margin: 0; /*Add this*/
+}
+
+.container {
+    height: 100%;
 }

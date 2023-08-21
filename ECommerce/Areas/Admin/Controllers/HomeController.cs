@@ -4,19 +4,24 @@ using ECommerce.Models.ViewModels;
 using ECommerce.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace ECommerce.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly AppDbContext context;
         private static IMapper _mapper;
+        private readonly SignInManager<AppUser> signInManager;
 
-        public HomeController(AppDbContext context, IMapper mapper)
+        public HomeController(AppDbContext context, IMapper mapper, SignInManager<AppUser> signInManager)
         {
             this.context = context;
             _mapper = mapper;
+            this.signInManager = signInManager;
         }
 
         public IActionResult Index()
@@ -323,6 +328,11 @@ namespace ECommerce.Areas.Admin.Controllers
                 return View("Error", new ErrorViewModel());
             }
 
+        }
+        public async Task<IActionResult> Logout()
+        {
+            await signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home", new { area = "default" });
         }
     }
 }
